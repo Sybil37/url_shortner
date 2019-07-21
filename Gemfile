@@ -12,6 +12,11 @@ gem 'byebug'
 gem 'bcrypt'
 gem 'base58'
 
+group :development do
+gem 'dotenv'
+end
+
+
 group :test do
   gem 'launchy'
   gem 'rspec'

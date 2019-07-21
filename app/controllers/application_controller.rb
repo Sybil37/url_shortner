@@ -45,21 +45,36 @@ class ApplicationController < Sinatra::Base
     end
 
 
-
+#This route generates a url and saves it to the database if the url doesn't already exist in the database else it creates a new one with the user_id as the current user_id if the user is logged in.
     post "/url" do
-        a = (rand(100..400) + 1).to_s
-        search = User.find(session[:user_id])
-        if session[:user_id] == search.id
-            @url = Url.new(user_url: params["url"], user_id: session[:user_id], gen_url: "#{a}")
-            @url.save
-            erb :"/shortened"
-
+        search = Url.find_by(user_url: params["url"])
+        if search.nil? == true
+           user =  User.find(user_id: session[:user_id])
+            if user.nil? == true
+               a = (rand(100..400) + 1).to_s
+               @url = Url.create(user_url: params["url"], gen_url: "#{a}" )
+               erb :"/shortened"
+            else
+                @url = Url.create(user_id: session[:user_id], gen_url: "#{a}")
+                erb :"/shortened"
+            end
         else
-            @url = Url.new(user_url: params["url"], gen_url: "#{a}")
-            @url.save
-            erb :"/shortened"
-
+            @url = Url.find_by(user_url: params["url"]) 
+            erb :'shortened'
         end
+        # a = (rand(100..400) + 1).to_s
+        # search = User.find(session[:user_id])
+        # if session[:user_id] == search.id
+        #     @url = Url.new(user_url: params["url"], user_id: session[:user_id], gen_url: "#{a}")
+        #     @url.save
+        #     erb :"/shortened"
+
+        # else
+        #     @url = Url.new(user_url: params["url"], gen_url: "#{a}")
+        #     @url.save
+        #     erb :"/shortened"
+
+        # end
         # @url = Url.new(user_url: params["url"], user_id: session[:user_id], gen_url: "#{a}")
         # @url.save
     end

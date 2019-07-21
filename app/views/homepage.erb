@@ -9,8 +9,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap" rel="stylesheet">
 </head>
-<h1 style = "font-family:georgia,garamond,serif;font-size:70px;font-style:italic;"> S.shortner </h1>
+<body background="img/back.png">
+<h1 style = "font-family:Hind Madurai;font-size:70px; color: yellow; text-align: center;"> u-shortner </h1>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Home</a>
@@ -33,17 +35,17 @@
 </nav>
 
 <br>
-<%@url.each do |x|%>
-<h1><%="http://127.0.0.1:9393/" + x.gen_url%></h1>
-<%end%>
+
 
 <form method="POST" action="/url">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Enter your url here</label>
+  <div class="form-group" style="display: flex; flex-direction: column; text-align: center; justify-content: center;">
+    <h1 style="color: white;"><label for="exampleInputEmail1">Enter your url here</label></h1>
     <input type="url" class="form-control" name="url" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter url">
-    <small id="emailHelp" class="form-text text-muted">S.shortner will shorten your link for you</small>
+    <h2>S.shortner will shorten your link for you</h2>
   </div>
-  
+  <div style="display: flex; justify-content: center;">
   <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
 </form>
+</body>
 </html>
